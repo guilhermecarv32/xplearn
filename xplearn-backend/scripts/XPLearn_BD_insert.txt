@@ -1,0 +1,198 @@
+USE gamificado_db;
+
+SET FOREIGN_KEY_CHECKS = 0;
+
+TRUNCATE TABLE Aluno_Atividade;
+TRUNCATE TABLE Aluno_Turma;
+TRUNCATE TABLE Aluno_Badge;
+TRUNCATE TABLE Atividade;
+TRUNCATE TABLE Turma;
+TRUNCATE TABLE Aluno;
+TRUNCATE TABLE Professor;
+TRUNCATE TABLE Badge;
+TRUNCATE TABLE Avatar;
+
+SET FOREIGN_KEY_CHECKS = 1;
+
+-- Inserts de Avatares
+INSERT INTO Avatar (nome, caminho_foto) VALUES
+('Avatar1', '/imagens/avatares/avatar1.png'),
+('Avatar2', '/imagens/avatares/avatar2.png'),
+('Avatar3', '/imagens/avatares/avatar3.png'),
+('Avatar4', '/imagens/avatares/avatar4.png'),
+('Avatar5', '/imagens/avatares/avatar5.png'),
+('Avatar6', '/imagens/avatares/avatar6.png'),
+('Avatar7', '/imagens/avatares/avatar7.png'),
+('Avatar8', '/imagens/avatares/avatar8.png'),
+('Avatar9', '/imagens/avatares/avatar9.png'),
+('Avatar10', '/imagens/avatares/avatar10.png'),
+('Avatar11', '/imagens/avatares/avatar11.png'),
+('Avatar12', '/imagens/avatares/avatar12.png'),
+('Avatar13', '/imagens/avatares/avatar13.png'),
+('Avatar14', '/imagens/avatares/avatar14.png'),
+('Avatar15', '/imagens/avatares/avatar15.png'),
+('Avatar16', '/imagens/avatares/avatar16.png'),
+('Avatar17', '/imagens/avatares/avatar17.png'),
+('Avatar18', '/imagens/avatares/avatar18.png'),
+('Avatar19', '/imagens/avatares/avatar19.png'),
+('Avatar20', '/imagens/avatares/avatar20.png'),
+('Avatar21', '/imagens/avatares/avatar21.png'),
+('Avatar22', '/imagens/avatares/avatar22.png'),
+('Avatar23', '/imagens/avatares/avatar23.png'),
+('Avatar24', '/imagens/avatares/avatar24.png'),
+('Avatar25', '/imagens/avatares/avatar25.png'),
+('Avatar26', '/imagens/avatares/avatar26.png'),
+('Avatar27', '/imagens/avatares/avatar27.png'),
+('Avatar28', '/imagens/avatares/avatar28.png'),
+('Avatar29', '/imagens/avatares/avatar29.png'),
+('Avatar30', '/imagens/avatares/avatar30.png'),
+('Avatar31', '/imagens/avatares/avatar31.png'),
+('Avatar32', '/imagens/avatares/avatar32.png'),
+('Avatar33', '/imagens/avatares/avatar33.png'),
+('Avatar34', '/imagens/avatares/avatar34.png'),
+('Avatar35', '/imagens/avatares/avatar35.png'),
+('Avatar36', '/imagens/avatares/avatar36.png'),
+('Avatar37', '/imagens/avatares/avatar37.png'),
+('Avatar38', '/imagens/avatares/avatar38.png'),
+('Avatar39', '/imagens/avatares/avatar39.png'),
+('Avatar40', '/imagens/avatares/avatar40.png'),
+('Avatar41', '/imagens/avatares/avatar41.png'),
+('Avatar42', '/imagens/avatares/avatar42.png'),
+('Avatar43', '/imagens/avatares/avatar43.png'),
+('Avatar44', '/imagens/avatares/avatar44.png'),
+('Avatar45', '/imagens/avatares/avatar45.png'),
+('Avatar46', '/imagens/avatares/avatar46.png'),
+('Avatar47', '/imagens/avatares/avatar47.png'),
+('Avatar48', '/imagens/avatares/avatar48.png'),
+('Avatar49', '/imagens/avatares/avatar49.png'),
+('Avatar50', '/imagens/avatares/avatar50.png'),
+('Avatar51', '/imagens/avatares/avatar51.png'),
+('Avatar52', '/imagens/avatares/avatar52.png'),
+('Avatar53', '/imagens/avatares/avatar53.png'),
+('Avatar54', '/imagens/avatares/avatar54.png'),
+('Avatar55', '/imagens/avatares/avatar55.png'),
+('Avatar56', '/imagens/avatares/avatar56.png'),
+('Avatar57', '/imagens/avatares/avatar57.png'),
+('Avatar58', '/imagens/avatares/avatar58.png'),
+('Avatar59', '/imagens/avatares/avatar59.png'),
+('Avatar60', '/imagens/avatares/avatar60.png'),
+('Avatar61', '/imagens/avatares/avatar61.png'),
+('Avatar62', '/imagens/avatares/avatar62.png'),
+('Avatar63', '/imagens/avatares/avatar63.png'),
+('Avatar64', '/imagens/avatares/avatar64.png'),
+('Avatar65', '/imagens/avatares/avatar65.png'),
+('Avatar66', '/imagens/avatares/avatar66.png'),
+('Avatar67', '/imagens/avatares/avatar67.png'),
+('Avatar68', '/imagens/avatares/avatar68.png'),
+('Avatar69', '/imagens/avatares/avatar69.png'),
+('Avatar70', '/imagens/avatares/avatar70.png'),
+('Avatar71', '/imagens/avatares/avatar71.png'),
+('Avatar72', '/imagens/avatares/avatar72.png'),
+('Avatar73', '/imagens/avatares/avatar73.png'),
+('Avatar74', '/imagens/avatares/avatar74.png'),
+('Avatar75', '/imagens/avatares/avatar75.png'),
+('Avatar76', '/imagens/avatares/avatar76.png'),
+('Avatar77', '/imagens/avatares/avatar77.png'),
+('Avatar78', '/imagens/avatares/avatar78.png'),
+('Avatar79', '/imagens/avatares/avatar79.png'),
+('Avatar80', '/imagens/avatares/avatar80.png'),
+('Avatar81', '/imagens/avatares/avatar81.png'),
+('Avatar82', '/imagens/avatares/avatar82.png'),
+('Avatar83', '/imagens/avatares/avatar83.png'),
+('Avatar84', '/imagens/avatares/avatar84.png'),
+('Avatar85', '/imagens/avatares/avatar85.png'),
+('Avatar86', '/imagens/avatares/avatar86.png'),
+('Avatar87', '/imagens/avatares/avatar87.png'),
+('Avatar88', '/imagens/avatares/avatar88.png'),
+('Avatar89', '/imagens/avatares/avatar89.png'),
+('Avatar90', '/imagens/avatares/avatar90.png'),
+('Avatar91', '/imagens/avatares/avatar91.png'),
+('Avatar92', '/imagens/avatares/avatar92.png'),
+('Avatar93', '/imagens/avatares/avatar93.png'),
+('Avatar94', '/imagens/avatares/avatar94.png'),
+('Avatar95', '/imagens/avatares/avatar95.png'),
+('Avatar96', '/imagens/avatares/avatar96.png'),
+('Avatar97', '/imagens/avatares/avatar97.png'),
+('Avatar98', '/imagens/avatares/avatar98.png'),
+('Avatar99', '/imagens/avatares/avatar99.png'),
+('Avatar100', '/imagens/avatares/avatar100.png'),
+('Avatar101', '/imagens/avatares/avatar101.png'),
+('Avatar102', '/imagens/avatares/avatar102.png'),
+('Avatar103', '/imagens/avatares/avatar103.png'),
+('Avatar104', '/imagens/avatares/avatar104.png'),
+('Avatar105', '/imagens/avatares/avatar105.png'),
+('Avatar106', '/imagens/avatares/avatar106.png'),
+('Avatar107', '/imagens/avatares/avatar107.png'),
+('Avatar108', '/imagens/avatares/avatar108.png'),
+('Avatar109', '/imagens/avatares/avatar109.png'),
+('Avatar110', '/imagens/avatares/avatar110.png'),
+('Avatar111', '/imagens/avatares/avatar111.png'),
+('Avatar112', '/imagens/avatares/avatar112.png'),
+('Avatar113', '/imagens/avatares/avatar113.png'),
+('Avatar114', '/imagens/avatares/avatar114.png'),
+('Avatar115', '/imagens/avatares/avatar115.png');
+
+-- Inserts de Badges
+INSERT INTO Badge (nome, requisito, icone) VALUES
+('Hcomportamento', '', '/imagens/badges/H-comportamento.fw.png'),
+('Hemocional', '', '/imagens/badges/H-emocional.fw.png'),
+('Hescrita', '', '/imagens/badges/H-escrita.fw.png'),
+('Hleitura', '', '/imagens/badges/H-leitura.fw.png'),
+('Hraciocinio', '', '/imagens/badges/H-raciocinio.fw.png'),
+('Bug', '', '/imagens/badges/bug.fw.png'),
+('Codepower', '', '/imagens/badges/codepower.fw.png'),
+('Comunica', '', '/imagens/badges/comunica.fw.png'),
+('Configurar', '', '/imagens/badges/configurar.fw.png'),
+('Desafio', '', '/imagens/badges/desafio.fw.png'),
+('Escudo', '', '/imagens/badges/escudo.fw.png'),
+('Logica', '', '/imagens/badges/logica.fw.png'),
+('Loop', '', '/imagens/badges/loop.fw.png'),
+('Manutencao', '', '/imagens/badges/manutencao.fw.png'),
+('Mouse', '', '/imagens/badges/mouse.fw.png'),
+('Output', '', '/imagens/badges/output.fw.png'),
+('Sequencia', '', '/imagens/badges/sequencia.fw.png'),
+('Social', '', '/imagens/badges/social.fw.png'),
+('Timer', '', '/imagens/badges/timer.fw.png');
+
+-- Inserts de Professores
+INSERT INTO Professor (matricula, nome, senha, avatar_id_fk) VALUES
+('P001', 'Carlos Souza', 'HASH_SENHA_1', 1),
+('P002', 'Maria Oliveira', 'HASH_SENHA_2', 2);
+
+-- Inserts de Turmas
+INSERT INTO Turma (nome, professor_matricula_fk) VALUES
+('Turma de Banco de Dados', 'P001'),
+('Turma de Programação Web', 'P002');
+
+-- Inserts de Atividades
+INSERT INTO Atividade (nome, descricao, nota_max, pontos, data_entrega, badge_id_fk, turma_id_fk) VALUES
+('Atividade 1 - Modelagem BD', 'Criar um modelo ER simples', 10.00, 100, '2025-10-15 23:59:59', 1, 1),
+('Atividade 2 - Normalização', 'Aplicar até 3FN no modelo criado', 10.00, 150, '2025-10-20 23:59:59', 2, 1),
+('Atividade 1 - HTML e CSS', 'Construir uma landing page simples', 10.00, 200, '2025-10-18 23:59:59', 1, 2);
+
+-- Inserts de Alunos
+INSERT INTO Aluno (matricula, nome, nickname, senha, xp, nivel, avatar_id_fk) VALUES
+('A001', 'João Silva', 'joaoslv', 'HASH_SENHA_3', 50, 1, 2),
+('A002', 'Ana Lima', 'aninha', 'HASH_SENHA_4', 120, 2, 3),
+('A003', 'Pedro Santos', 'pedrinho', 'HASH_SENHA_5', 300, 3, 1);
+
+-- Inserts de Aluno_Turma (matrículas em turmas)
+INSERT INTO Aluno_Turma (aluno_matricula_fk, turma_id_fk) VALUES
+('A001', 1),
+('A002', 1),
+('A002', 2),
+('A003', 2);
+
+-- Inserts de Aluno_Atividade (notas obtidas)
+INSERT INTO Aluno_Atividade (aluno_matricula_fk, atividade_id_fk, nota) VALUES
+('A001', 1, 8.5),
+('A002', 1, 10.0),
+('A002', 2, 9.0),
+('A003', 3, 7.5);
+
+-- Inserts de Aluno_Badge (badges conquistados)
+INSERT INTO Aluno_Badge (aluno_matricula_fk, badge_id_fk, data_conquista) VALUES
+('A001', 1, NOW()),
+('A002', 1, NOW()),
+('A002', 2, NOW()),
+('A003', 1, NOW());

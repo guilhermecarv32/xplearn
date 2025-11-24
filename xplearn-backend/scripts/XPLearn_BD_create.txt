@@ -1,0 +1,102 @@
+-- Cria o banco de dados se ele não existir e o seleciona para uso.
+CREATE DATABASE IF NOT EXISTS gamificado_db
+DEFAULT CHARACTER SET utf8mb4
+DEFAULT COLLATE utf8mb4_unicode_ci;
+
+USE gamificado_db;
+
+-- Tabela 1: Avatar
+-- Armazena a biblioteca de avatares disponíveis para Alunos e Professores.
+CREATE TABLE Avatar (
+    id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+    nome VARCHAR(255) NOT NULL,
+    caminho_foto VARCHAR(255) NOT NULL UNIQUE
+) ENGINE=InnoDB;
+
+-- Tabela 2: Badge
+-- Armazena a biblioteca de emblemas que podem ser conquistados.
+CREATE TABLE Badge (
+    id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+    nome VARCHAR(255) NOT NULL,
+    requisito TEXT,
+    icone VARCHAR(255) NOT NULL UNIQUE
+) ENGINE=InnoDB;
+
+-- Tabela 3: Professor
+-- Armazena os dados dos professores.
+CREATE TABLE Professor (
+    matricula VARCHAR(255) PRIMARY KEY,
+    nome VARCHAR(255) NOT NULL,
+    senha VARCHAR(255) NOT NULL, -- Armazena o HASH da senha, nunca a senha pura!
+    avatar_id_fk INT UNSIGNED NOT NULL,
+    CONSTRAINT fk_professor_avatar FOREIGN KEY (avatar_id_fk) REFERENCES Avatar(id)
+) ENGINE=InnoDB;
+
+-- Tabela 4: Turma
+-- Armazena as turmas, cada uma ligada a um professor.
+CREATE TABLE Turma (
+    id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+    nome VARCHAR(255) NOT NULL,
+    professor_matricula_fk VARCHAR(255) NOT NULL,
+    CONSTRAINT fk_turma_professor FOREIGN KEY (professor_matricula_fk) REFERENCES Professor(matricula) ON UPDATE CASCADE ON DELETE RESTRICT
+) ENGINE=InnoDB;
+
+-- Tabela 5: Atividade
+-- Armazena as atividades de cada turma.
+CREATE TABLE Atividade (
+    id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+    nome VARCHAR(255) NOT NULL,
+    descricao TEXT,
+    nota_max DECIMAL(5, 2) NOT NULL DEFAULT 10.00,
+    pontos INT UNSIGNED NOT NULL DEFAULT 0,
+    data_entrega DATETIME,
+    badge_id_fk INT UNSIGNED, -- Nulo se a atividade não conceder um badge
+    turma_id_fk INT UNSIGNED NOT NULL,
+    CONSTRAINT fk_atividade_badge FOREIGN KEY (badge_id_fk) REFERENCES Badge(id),
+    CONSTRAINT fk_atividade_turma FOREIGN KEY (turma_id_fk) REFERENCES Turma(id) ON DELETE CASCADE
+) ENGINE=InnoDB;
+
+-- Tabela 6: Aluno
+-- Armazena os dados dos alunos.
+CREATE TABLE Aluno (
+    matricula VARCHAR(255) PRIMARY KEY,
+    nome VARCHAR(255) NOT NULL,
+    nickname VARCHAR(255) NOT NULL UNIQUE,
+    senha VARCHAR(255) NOT NULL, -- Armazena o HASH da senha, nunca a senha pura!
+    xp INT UNSIGNED NOT NULL DEFAULT 0,
+    nivel INT UNSIGNED NOT NULL DEFAULT 1,
+    avatar_id_fk INT UNSIGNED NOT NULL,
+    CONSTRAINT fk_aluno_avatar FOREIGN KEY (avatar_id_fk) REFERENCES Avatar(id)
+) ENGINE=InnoDB;
+
+-- Tabela 7: Aluno_Turma (Tabela de Junção)
+-- Matricula os alunos nas turmas (relacionamento N:M).
+CREATE TABLE Aluno_Turma (
+    aluno_matricula_fk VARCHAR(255) NOT NULL,
+    turma_id_fk INT UNSIGNED NOT NULL,
+    PRIMARY KEY (aluno_matricula_fk, turma_id_fk),
+    CONSTRAINT fk_alunoturma_aluno FOREIGN KEY (aluno_matricula_fk) REFERENCES Aluno(matricula) ON DELETE CASCADE,
+    CONSTRAINT fk_alunoturma_turma FOREIGN KEY (turma_id_fk) REFERENCES Turma(id) ON DELETE CASCADE
+) ENGINE=InnoDB;
+
+-- Tabela 8: Aluno_Atividade (Tabela de Junção)
+-- Registra a conclusão de uma atividade por um aluno, com sua nota.
+CREATE TABLE Aluno_Atividade (
+    aluno_matricula_fk VARCHAR(255) NOT NULL,
+    atividade_id_fk INT UNSIGNED NOT NULL,
+    nota DECIMAL(5, 2),
+    PRIMARY KEY (aluno_matricula_fk, atividade_id_fk),
+    CONSTRAINT fk_alunoatividade_aluno FOREIGN KEY (aluno_matricula_fk) REFERENCES Aluno(matricula) ON DELETE CASCADE,
+    CONSTRAINT fk_alunoatividade_atividade FOREIGN KEY (atividade_id_fk) REFERENCES Atividade(id) ON DELETE CASCADE
+) ENGINE=InnoDB;
+
+-- Tabela 9: Aluno_Badge (Tabela de Junção)
+-- Registra os badges conquistados por cada aluno.
+CREATE TABLE Aluno_Badge (
+    aluno_matricula_fk VARCHAR(255) NOT NULL,
+    badge_id_fk INT UNSIGNED NOT NULL,
+    data_conquista TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    PRIMARY KEY (aluno_matricula_fk, badge_id_fk),
+    CONSTRAINT fk_alunobadge_aluno FOREIGN KEY (aluno_matricula_fk) REFERENCES Aluno(matricula) ON DELETE CASCADE,
+    CONSTRAINT fk_alunobadge_badge FOREIGN KEY (badge_id_fk) REFERENCES Badge(id) ON DELETE CASCADE
+) ENGINE=InnoDB;
