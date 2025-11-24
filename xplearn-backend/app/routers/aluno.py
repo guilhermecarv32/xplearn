@@ -15,7 +15,8 @@ router = APIRouter(prefix="/alunos", tags=["Alunos"])
 
 @router.post("/", response_model=schemas.AlunoResponseCreate)
 def create_user(aluno: schemas.AlunoCreate, db: Session = Depends(database.get_db)):
-    
+    print("📌 Payload recebido:", aluno.dict())
+
     try:
         db_aluno = db.query(Aluno).filter(Aluno.matricula == aluno.matricula).first()
         if db_aluno:

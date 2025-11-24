@@ -131,11 +131,20 @@ const isConfirmarVisible = ref(false);
 const abrirModalAvatares = ref(false);
 
 async function onSubmit() {
+    if (!selectedAvatarId.value) {
+    $q.notify({
+        color: "negative",
+        position: "top",
+        message: "Selecione um avatar antes de cadastrar!",
+        icon: "warning"
+    });
+    return;
+}
     // Decide qual URL chamar baseado no tamanho da matrícula
     const isAluno = formData.matricula.length === 12;
     const isProfessor = formData.matricula.length === 7;
 
-    const finalAvatarId = selectedAvatarId.value || "public/emptyBadgeSlot.png";
+    const finalAvatarId = selectedAvatarId.value ?? null;
 
     try {
         let payload;

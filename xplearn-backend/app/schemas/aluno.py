@@ -1,5 +1,6 @@
 from pydantic import BaseModel
 from typing import List, Optional
+from typing import Optional
 
 class AlunoBase(BaseModel):
     matricula: str
@@ -9,7 +10,7 @@ class AlunoBase(BaseModel):
     xp: int
     nivel: int
     icone: str | None = None
-    avatar_id_fk: int
+    avatar_id_fk: Optional[int] = None
     
 class AlunoCreate(AlunoBase):
     pass
